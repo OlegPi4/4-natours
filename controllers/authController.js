@@ -52,11 +52,12 @@ const login = catchAsync(async (req, res, next) => {
 const protect = catchAsync(async (req, res, next) => {
   let token;
   // 1) geting token
+
   if (
-    req.headers.autorization &&
-    req.headers.autorization.startsWith('Bearer')
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
   ) {
-    token = req.headers.autorization.split(' ')[1];
+    token = req.headers.authorization.split(' ')[1];
   }
   if (!token) {
     return next(
