@@ -10,19 +10,10 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD,
 );
 
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
-  .then((con) => console.log('DB connected successful !'));
+mongoose.connect(DB).then((con) => console.log('DB connected successful !'));
 
 // READ JSON file
-const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf8'),
-);
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf8'));
 console.log(tours);
 // IMPORT DATA INTO DB
 const importData = async () => {
