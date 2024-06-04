@@ -2,7 +2,7 @@ const User = require('./../models/userModel');
 const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appErrors');
-const { deleteOne } = require('./hendlerFactory');
+const { deleteOne, updateOne } = require('./hendlerFactory');
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -79,12 +79,15 @@ const getUser = (req, res) => {
     message: 'This route is not yet defined!',
   });
 };
-const updateUser = (req, res) => {
-  return res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
-  });
-};
+// do not update pessword
+const updateUser = updateOne(User);
+
+// const updateUser = (req, res) => {
+//   return res.status(500).json({
+//     status: 'error',
+//     message: 'This route is not yet defined!',
+//   });
+// };
 
 const deleteUser = deleteOne(User);
 // const deleteUser = (req, res) => {
