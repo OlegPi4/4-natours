@@ -12,6 +12,7 @@ const globalErrorHendler = require('./controllers/errorController');
 const AppError = require('./utils/appErrors.js');
 const tourRouter = require('./routes/toureRoutes');
 const userRouter = require('./routes/userRoutes');
+const reviewRouter = require('./routes/reviewRouter');
 
 const app = express();
 
@@ -67,6 +68,7 @@ app.use((req, res, next) => {
 ///  ROUTES
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/reviews', reviewRouter);
 
 /// HENDLER ERROR
 app.all('*', (req, res, next) => {
