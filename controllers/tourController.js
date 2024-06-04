@@ -44,18 +44,6 @@ const getTour = catchAsync(async (req, res, next) => {
 });
 
 const createTour = createOne(Tour);
-
-// const createTour = catchAsync(async (req, res, next) => {
-//   const newTour = await Tour.create(req.body);
-
-//   res.status(201).json({
-//     status: 'success',
-//     data: {
-//       tour: newTour,
-//     },
-//   });
-// });
-
 const updateToure = updateOne(Tour);
 const deleteToure = deleteOne(Tour);
 

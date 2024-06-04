@@ -81,21 +81,7 @@ const getUser = (req, res) => {
 };
 // do not update pessword
 const updateUser = updateOne(User);
-
-// const updateUser = (req, res) => {
-//   return res.status(500).json({
-//     status: 'error',
-//     message: 'This route is not yet defined!',
-//   });
-// };
-
 const deleteUser = deleteOne(User);
-// const deleteUser = (req, res) => {
-//   return res.status(500).json({
-//     status: 'error',
-//     message: 'This route is not yet defined!',
-//   });
-// };
 
 module.exports = {
   getAllUsers,
