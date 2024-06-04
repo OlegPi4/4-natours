@@ -7,6 +7,7 @@ const {
   deleteReview,
   updateReview,
   setTourUserIds,
+  getReview,
 } = require('../controllers/reviewController.js');
 
 const { protect, restrictTo } = require('./../controllers/authController');
@@ -18,6 +19,7 @@ router
 
 router
   .route('/:id')
+  .get(getReview)
   .delete(protect, restrictTo('admin', 'lead-guide'), deleteReview)
   .patch(protect, updateReview);
 
