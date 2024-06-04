@@ -1,5 +1,6 @@
 const Review = require('../models/reviewModel');
 const catchAsync = require('../utils/catchAsync');
+const { deleteOne } = require('./hendlerFactory');
 
 const getAllReviews = catchAsync(async (req, res, next) => {
   let filter = {};
@@ -31,7 +32,10 @@ const createReview = catchAsync(async (req, res, next) => {
   });
 });
 
+const deleteReview = deleteOne(Review);
+
 module.exports = {
   getAllReviews,
   createReview,
+  deleteReview,
 };
