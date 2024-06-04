@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 
+const reviewRouter = require('./reviewRouter.js');
+
 const {
   getAllTours,
   createTour,
@@ -24,5 +26,7 @@ router
   .get(getTour)
   .patch(updateToure)
   .delete(protect, restrictTo('admin', 'lead-guide'), deleteToure);
+
+router.use('/:tourId/reviews', reviewRouter);
 
 module.exports = router;
