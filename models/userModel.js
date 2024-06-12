@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
 });
-// для заполнения поля passwordChangedAt
+//для заполнения поля passwordChangedAt
 userSchema.pre('save', function (next) {
   if (!this.isModified('password') || this.isNew) return next();
   this.passwordChangedAt = Date.now();
