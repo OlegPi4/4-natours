@@ -102,6 +102,32 @@ const protect = catchAsync(async (req, res, next) => {
   next();
 });
 
+const isLoggedIn = catchAsync(async (req, res, next) => {
+  // if exists token
+  if (req.cookies.jwt) {
+    // 1) Verification token
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET,
+    );
+
+    // 2) Check if user still exists
+    const currentUser = await User.findById(decoded.id);
+    //console.log(`currentUser - ${currentUser}`);
+    if (!currentUser) {
+      return next();
+    }
+    // 3) Check if user changed password after token was issued
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return next();
+    }
+    // THERE IS A LOGGED IN USER
+    res.locals.user = currentUser;
+    return next();
+  }
+  next();
+});
+
 const restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
@@ -214,4 +240,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   updatePassword,
+  isLoggedIn,
 };

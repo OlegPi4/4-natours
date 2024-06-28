@@ -6,7 +6,9 @@
   "scripts": {
     "start": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production&&nodemon server.js",
-    "debug": "ndb server.js"
+    "debug": "ndb server.js",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "author": "Udemy course",
   "license": "ISC",
@@ -40,6 +42,8 @@
     "eslint-plugin-react": "^7.34.1",
     "install": "^0.13.0",
     "npm": "^10.8.0",
+    "parcel": "^2.12.0",
+    "parcel-bundler": "^1.12.5",
     "prettier": "^3.2.5"
   },
   "engines": {
