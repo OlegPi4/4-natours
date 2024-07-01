@@ -1,4 +1,5 @@
 const Tour = require('../models/tourModel');
+const AppError = require('./../utils/appErrors');
 const catchAsync = require('../utils/catchAsync');
 
 const getOverview = catchAsync(async (req, res, next) => {
@@ -18,7 +19,7 @@ const getTour = catchAsync(async (req, res, next) => {
   });
 
   if (!tour) {
-    return next(new AppError('No details about this tour', 404));
+    return next(new AppError('There is no tout with this name.', 404));
   }
 
   res.status(200).render('tour', {
